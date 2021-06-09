@@ -1,14 +1,13 @@
 <h1>Welcome! Please log in</h1>
+
 <form id="login" name="login" method="POST" action="/users/login">
-  <div>
-    <label for="name">Username: </label>
-    <input type="text" name="username" required>
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="username" class="form-control" name="username" id="username" aria-describedby="usernameHelp" placeholder="Enter username">
   </div>
-  <div>
-    <label for="name">Password: </label>
-    <input type="password" name="password" required>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" id="password" placeholder="Enter password">
   </div>
-  <div>
-    <button type="submit">Submit</button>
-  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>

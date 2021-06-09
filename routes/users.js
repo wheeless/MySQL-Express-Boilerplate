@@ -24,10 +24,10 @@ router.post("/signup", function(req, res, next) {
         FirstName: req.body.firstName,
         LastName: req.body.lastName,
         Email: req.body.email,
-        Password: authService.hashPassword(req.body.password) //<--- Change to this code here
+        Password: authService.hashPassword(req.body.password)
       }
     })
-    .spread(function(result, created) {
+    .then(function(created) {
       if (created) {
         res.redirect("login");
       } else {
@@ -87,10 +87,10 @@ router.get("/profile", function(req, res, next) {
           .then(result => {
             models.users
             .update({ lastLogin: Date.now() }, { where: { UserId: user.UserId }, raw: true })
-            console.log(result);
+            // console.log(result);
             res.render("profile", { 
               user: result[0],
-              title: title
+              title: title   
              });
           });
       } else {
@@ -108,24 +108,6 @@ router.get("/profile", function(req, res, next) {
 router.get("/logout", function(req, res, next) {
   res.cookie("jwt", "", { expires: new Date(0) });
   res.redirect("login");
-});
-
-// Specific user profile route using their username instead of their id
-router.get("/:username", function(req, res, next) {
-  let username = req.params.username;
-  let token = req.cookies.jwt;
-  console.log(token);
-  if (authService.verifyUser(token)) {
-    authService.verifyUser(token).then(user => {
-      if (user) {
-        models.users
-          .findOne({ where: { Username: username }, raw: true })
-          .then(user => res.render("oneuser", { user: user }));
-      } else {
-        res.send("unauthorized");
-      }
-    });
-  }
 });
 
 // Admin route to see all NON deleted users, you need to be an admin for this!
@@ -196,5 +178,25 @@ router.delete("/admin/editUser/:id", function(req, res, next) {
     });
   }
 });
+
+//LEAVE AT THE BOTTOM... Oops?
+// Specific user profile route using their username instead of their id
+router.get("/:username", function(req, res, next) {
+  let username = req.params.username;
+  let token = req.cookies.jwt;
+  console.log(token);
+  if (authService.verifyUser(token)) {
+    authService.verifyUser(token).then(user => {
+      if (user) {
+        models.users
+          .findOne({ where: { Username: username }, raw: true })
+          .then(user => res.render("oneuser", { user: user }));
+      } else {
+        res.send("unauthorized");
+      }
+    });
+  }
+});
+
 
 module.exports = router;

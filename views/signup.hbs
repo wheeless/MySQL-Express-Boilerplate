@@ -1,27 +1,33 @@
 <h1>Welcome! Please sign up</h1>
 
 <form id="signup" name="signup" method="POST" action="/users/signup">
-  <div>
-    <label for="name">First Name: </label>
-    <input type="text" name="firstName" required>
+  <div class="input-group mb-1">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="">First and last name</span>
+    </div>
+    <input type="text" name="firstName" placeholder="Jon" class="form-control" required>
+    <input type="text" name="lastName" placeholder="Doe" class="form-control" required>
+  </div>
+  <div class="input-group mb-1">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Email</span>
+    </div>
+    <input type="text" name="email" class="form-control" placeholder="jon.doe49@awesomemail.com" aria-label="Email" aria-describedby="basic-addon1" required>
+  </div>
+  <div class="input-group mb-1">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Username</span>
+    </div>
+    <input type="username" name="username" class="form-control" placeholder="JonBoy" aria-label="Username"
+      aria-describedby="basic-addon1" required>
+  </div>
+  <div class="input-group mb-1">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Password</span>
+    </div>
+    <input type="text" name="password" placeholder="DefNot123$$$" class="form-control" aria-label="Password" aria-describedby="basic-addon1" required>
   </div>
   <div>
-    <label for="name">Last Name: </label>
-    <input type="text" name="lastName" required>
-  </div>
-  <div>
-    <label for="name">Email: </label>
-    <input type="text" name="email" required>
-  </div>
-  <div>
-    <label for="name">Username: </label>
-    <input type="text" name="username" required>
-  </div>
-  <div>
-    <label for="name">Password: </label>
-    <input type="text" name="password" required>
-  </div>
-  <div>
-    <button type="submit">Submit</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
   </div>
 </form>

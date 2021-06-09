@@ -15,5 +15,46 @@
 <h1>Hello {{user.FirstName}} {{user.LastName}}</h1>
 <h2>Email: {{user.Email}}</h2>
 <h3>Username: {{user.Username}}</h3>
-<button onClick="adminUser({{user.UserId}})">Make User Admin</button>
-<button onClick="deleteUser({{user.UserId}})">Delete</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#makeAdminModal">Make User An Admin</button>
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete user?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you wish to delete this user? This option is not currently reversable within the panel.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" onClick="deleteUser({{user.UserId}})">Delete User</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="makeAdminModal" tabindex="-1" role="dialog" aria-labelledby="makeAdminModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="makeAdminModalLabel">Make user an admin?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you wish to make this user an admin? This option is not currently reversable within the panel.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" onClick="adminUser({{user.UserId}})">Save Change</button>
+      </div>
+    </div>
+  </div>
+</div>

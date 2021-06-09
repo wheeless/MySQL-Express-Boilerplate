@@ -63,7 +63,7 @@ router.post("/", function(req, res, next) {
               PostBody: req.body.postBody
             }
           })
-          .spread((result, created) => res.redirect("/posts"));
+          .then((result, created) => res.redirect("/posts"));
       } else {
         res.status(401);
         res.send("Invalid authentication token");

@@ -8,25 +8,27 @@ Admin Controls: <a href="/users/admin">Panel</a>
 <h2>Posts</h2>
 
 <div class="py-5 bg-light">
-  <div class="container">
+
 
     <div class="row">
-    {{#each user.posts}}
-      <div class="postCard card text-center">
-        <div class="card-header">
-          {{PostTitle}}
-        </div>
-        <div class="card-body">
-          {{!-- <h5 class="card-title">Special title treatment</h5> --}}
-          <p class="card-text">{{PostBody}}</p>
-          <a href="/posts/{{PostId}}" class="btn btn-primary">Edit Post</a>
-        </div>
-        <div class="card-footer text-muted">
-          {{dateFormat createdAt}}
+      {{#each user.posts}}
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+        <div class="postCard card text-center">
+          <div class="card-header">
+            {{PostTitle}}
+          </div>
+          <div class="card-body">
+            {{!-- <h5 class="card-title">Special title treatment</h5> --}}
+            <p class="card-text text-truncate">{{PostBody}}</p>
+            <a href="/posts/{{PostId}}" class="btn btn-info">Edit Post</a>
+          </div>
+          <div class="card-footer text-muted">
+            {{dateFormat createdAt}}
+          </div>
         </div>
       </div>
-    {{/each}}
+      {{/each}}
     </div>
 
-  </div>
+
 </div>
