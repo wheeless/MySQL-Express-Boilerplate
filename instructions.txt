@@ -1,0 +1,18 @@
+express --view=hbs L10HandsOn
+npm install
+npm install sequelize
+npm install mysql2
+npm install jsonwebtoken
+npm install bcryptjs
+
+sequelize init
+sequelize model:generate --name users --attributes UserId:integer,FirstName:string,LastName:string,Username:string,Password:string,Email:string,Admin:boolean
+sequelize model:generate --name posts --attributes PostId:integer,PostTitle:string,PostBody:string,UserId:integer
+
+makemigration --name user_post
+sequelize db:create
+sequelize db:migrate
+
+//after adding deleted to user
+makemigration --name user_delete
+sequelize db:migrate

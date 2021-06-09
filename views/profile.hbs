@@ -1,0 +1,32 @@
+<h1>Hello {{user.FirstName}} {{user.LastName}}</h1>
+<h2>Email: {{user.Email}}</h2>
+<h3>Username: {{user.Username}}</h3>
+{{#if user.Admin}}
+Admin Controls: <a href="/users/admin">Panel</a>
+{{/if}}
+<hr />
+<h2>Posts</h2>
+
+<div class="py-5 bg-light">
+  <div class="container">
+
+    <div class="row">
+    {{#each user.posts}}
+      <div class="postCard card text-center">
+        <div class="card-header">
+          {{PostTitle}}
+        </div>
+        <div class="card-body">
+          {{!-- <h5 class="card-title">Special title treatment</h5> --}}
+          <p class="card-text">{{PostBody}}</p>
+          <a href="/posts/{{PostId}}" class="btn btn-primary">Edit Post</a>
+        </div>
+        <div class="card-footer text-muted">
+          {{dateFormat createdAt}}
+        </div>
+      </div>
+    {{/each}}
+    </div>
+
+  </div>
+</div>
