@@ -13,7 +13,7 @@ var Sequelize = require('sequelize');
 var info = {
     "revision": 1,
     "name": "initial_migration",
-    "created": "2021-06-08T19:35:18.885Z",
+    "created": "2021-06-10T04:36:08.220Z",
     "comment": ""
 };
 
@@ -32,6 +32,10 @@ var migrationCommands = [{
                 "FirstName": {
                     "type": Sequelize.STRING,
                     "field": "FirstName"
+                },
+                "MiddleName": {
+                    "type": Sequelize.STRING,
+                    "field": "MiddleName"
                 },
                 "LastName": {
                     "type": Sequelize.STRING,
@@ -106,6 +110,12 @@ var migrationCommands = [{
                     "allowNull": true,
                     "field": "UserId",
                     "key": "UserId",
+                    "model": "users"
+                },
+                "Username": {
+                    "type": Sequelize.STRING,
+                    "field": "Username",
+                    "key": "Username",
                     "model": "users"
                 },
                 "Deleted": {

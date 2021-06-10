@@ -6,7 +6,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
-                <th scope="col">Admin</th>
+                <th scope="col">User Rank</th>
                 <th scope="col">Joined</th>
                 <th scope="col">Last Seen</th>
             </tr>
@@ -18,7 +18,11 @@
                 <td>{{FirstName}} {{LastName}}</td>
                 <td><a href="/users/{{Username}}">{{Username}}</a></td>
                 <td><a href="mailto:{{Email}}">{{Email}}</a></td>
-                <td>{{Admin}}</td>
+                {{#if Admin}}
+                <td>Admin</td>
+                {{else}}
+                <td>User</td>
+                {{/if}}
                 <td>{{dateFormat joined}}</td>
                 <td>{{dateFormatLong lastLogin}}</td>
             </tr>

@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "Password1!",
-    "database": "l10remaster",
+    "database": "boilerplate",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "define": { "timestamps": false }

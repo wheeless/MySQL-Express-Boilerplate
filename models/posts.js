@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
         model: "users",
         key: "UserId"
       },
+      Username: {
+        type: DataTypes.STRING,
+        model: "users",
+        key: "Username"
+      },
       Deleted: { type: DataTypes.BOOLEAN, defaultValue: false },
       createdAt: {
         type: DataTypes.DATE,

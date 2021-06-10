@@ -9,9 +9,7 @@ router.get("/", function(req, res, next) {
     authService.verifyUser(token).then(user => {
       if (user) {
         models.posts
-          .findAll({
-            where: { UserId: user.UserId }
-          })
+          .findAll({})
           .then(result => res.render("posts", { posts: result, user: user }));
         //console.log(user.Admin);
         //res.render("posts", { posts: user.posts });
@@ -59,6 +57,7 @@ router.post("/", function(req, res, next) {
           .findOrCreate({
             where: {
               UserId: user.UserId,
+              Username: user.Username,
               PostTitle: req.body.postTitle,
               PostBody: req.body.postBody
             }
@@ -105,8 +104,6 @@ router.put("/:id", function(req, res, next) {
     authService.verifyUser(token).then(user => {
       if (user) {
         let postId = parseInt(req.params.id);
-        console.log(req.body);
-        console.log(postId);
         models.posts
           .update(req.body, { where: { PostId: postId } })
           .then(result => res.redirect("/"));

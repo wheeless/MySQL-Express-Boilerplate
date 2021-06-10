@@ -31,6 +31,12 @@
                     "onUpdate": "CASCADE",
                     "seqType": "Sequelize.INTEGER"
                 },
+                "Username": {
+                    "model": "users",
+                    "key": "Username",
+                    "field": "Username",
+                    "seqType": "Sequelize.STRING"
+                },
                 "Deleted": {
                     "defaultValue": {
                         "value": false
@@ -62,6 +68,10 @@
                 },
                 "FirstName": {
                     "field": "FirstName",
+                    "seqType": "Sequelize.STRING"
+                },
+                "MiddleName": {
+                    "field": "MiddleName",
                     "seqType": "Sequelize.STRING"
                 },
                 "LastName": {
