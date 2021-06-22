@@ -12,16 +12,36 @@
     }).then(result => window.location = "/posts");
   }
 </script>
-
-<div>
-  <label for="postTitle">Title: </label>
-  <input type="text" id="postTitle" name="postTitle" required value="{{post.PostTitle}}">
-
+<form>
+<div class="mb-3">
+  <label for="postTitle" class="form-label">Title</label>
+  <input type="email" class="form-control" id="postTitle" name="postTitle" required value="{{post.PostTitle}}">
 </div>
-<div>
-  <label for="postBody">Body: </label>
-  <input type="text" id="postBody" name="postBody" required value="{{post.PostBody}}">
+<div class="mb-3">
+  <label for="postBody" class="form-label">Post Contents</label>
+  <textarea class="form-control" id="postBody" name="postBody" rows="3" required >{{post.PostBody}}</textarea>
 </div>
+</form>
 <div>
-  <button type="submit" class="btn btn-primary" onClick="updatePost({{post.PostId}})">Submit</button>
+  <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#editPostModal">Save</button>
+</div>
+
+<div class="modal fade" id="editPostModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit post?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you wish to save the changes to this post?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" onClick="updatePost({{post.PostId}})">Save</button>
+      </div>
+    </div>
+  </div>
 </div>

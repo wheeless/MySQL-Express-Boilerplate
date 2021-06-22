@@ -7,20 +7,38 @@
 <div class="container">
   <h3>Lets get active!</h3>
   <hr />
-  <h3>Posts || <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newPostModal">Create a new
-  post!</button></h3>
+  <h3>Posts || <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newPostModal">Create a new post!</button></h3>
   {{#each posts}}
   <hr>
   <h3>
     Username: {{ Username }} <br>
     Title: {{ PostTitle }} <br>
-    Post: {{ PostBody }} <br> <button class="btn btn-danger" onClick="deletePost({{PostId}})">Delete</button> <a
-      href="posts/{{PostId}}"><button class="btn btn-info">Edit</button></a>
+    Post: {{ PostBody }} <br>
+    <button class="btn btn-danger" data-toggle="modal" data-target="#deletePostModal">Delete</button> <a href="posts/{{PostId}}"><button class="btn btn-info">Edit</button></a>
   </h3>
-  {{/ each}}
+  {{/each}}
 
 </div>
 
+<div class="modal fade" id="deletePostModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete post?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you wish to delete this post? This action is not reversable.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" onClick="deletePost({{PostId}})">Delete Post</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="modal fade" id="newPostModal" tabindex="-1" aria-labelledby="newPostModalLabel" aria-hidden="true">
   <div class="modal-dialog">
