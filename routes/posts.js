@@ -76,6 +76,7 @@ router.post("/", function(req, res, next) {
 
 router.delete("/:id", function(req, res, next) {
   let token = req.cookies.jwt;
+  let puid = models.posts.UserId;
   if (authService.verifyUser(token)) {
     authService.verifyUser(token).then(user => {
       if (user) {
