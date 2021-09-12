@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "Password1!",
-    "database": "boilerplate",
-    "host": "127.0.0.1",
+    "username": "u34_QG6esxYfEo",
+    "password": "H5e=Z64gSso5iI!.AL1!dzet",
+    "database": "s34_Remaster0001",
+    "host": "sql.hostmonkey.io",
     "dialect": "mysql",
     "define": { "timestamps": false }
   },

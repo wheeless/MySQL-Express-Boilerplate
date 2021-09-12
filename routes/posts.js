@@ -6,11 +6,12 @@ var authService = require("../services/auth"); //<--- Add authentication service
 router.get("/", function(req, res, next) {
   let token = req.cookies.jwt;
   if (authService.verifyUser(token)) {
+    
     authService.verifyUser(token).then(user => {
       if (user) {
         models.posts
-          .findAll({})
-          .then(result => res.render("posts", { posts: result, user: user }));
+          .findAll({order:[['createdAt','DESC']]})
+          .then(result =>{ res.render("posts", { posts: result, user: user })});
         //console.log(user.Admin);
         //res.render("posts", { posts: user.posts });
         //res.send(JSON.stringify(user));
@@ -76,18 +77,29 @@ router.post("/", function(req, res, next) {
 
 router.delete("/:id", function(req, res, next) {
   let token = req.cookies.jwt;
-  let puid = models.posts.UserId;
   if (authService.verifyUser(token)) {
     authService.verifyUser(token).then(user => {
       if (user) {
         let postId = parseInt(req.params.id);
         models.posts
-          .destroy(
+          .findOne(
             {
               where: { PostId: postId }
             }
-          )
-          .then(result => res.redirect("/"));
+          ).then(posts => {
+            if(user.UserId === posts.UserId){
+              models.posts
+              .destroy(
+                {
+                  where: { PostId: postId }
+                }
+              )
+              .catch()
+            } else {
+              res.send('Hey! That\'s not your post')
+            }
+          })
+          .then(posts => res.redirect("/posts/"));
       } else {
         res.status(401);
         res.send("Invalid authentication token");
@@ -118,5 +130,30 @@ router.put("/:id", function(req, res, next) {
     res.send("Must be logged in");
   }
 });
+
+// router.delete("/:id", function(req, res, next) {
+//   let token = req.cookies.jwt;
+//   let puid = models.posts.UserId;
+//   if (authService.verifyUser(token)) {
+//     authService.verifyUser(token).then(user => {
+//       if (user) {
+//         let postId = parseInt(req.params.id);
+//         models.posts
+//           .destroy(
+//             {
+//               where: { PostId: postId }
+//             }
+//           )
+//           .then(result => res.redirect("/"));
+//       } else {
+//         res.status(401);
+//         res.send("Invalid authentication token");
+//       }
+//     });
+//   } else {
+//     res.status(401);
+//     res.send("Must be logged in");
+//   }
+// });
 
 module.exports = router;

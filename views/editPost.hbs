@@ -1,17 +1,3 @@
-<script type="application/javascript">
-  var updatePost = function (id) {
-    console.log(id);
-    var data = {
-      PostTitle: document.getElementById("postTitle").value,
-      PostBody: document.getElementById("postBody").value
-    }
-    fetch("/posts/" + id, {
-      method: "PUT", body: JSON.stringify(data), headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(result => window.location = "/posts");
-  }
-</script>
 <form>
 <div class="mb-3">
   <label for="postTitle" class="form-label">Title</label>
