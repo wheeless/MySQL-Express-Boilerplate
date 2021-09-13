@@ -1,0 +1,22 @@
+<div class="table-responsive">
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th scope="col">User ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+            <tr>
+                <th scope="row"><a href="/users/admin/editUser/{{UserId}}">{{UserId}}</a></th>
+                <td>{{FirstName}} {{LastName}}</td>
+                <td><a href="/users/{{Username}}">{{Username}}</a></td>
+                <td><a href="mailto:{{Email}}">{{Email}}</a></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
