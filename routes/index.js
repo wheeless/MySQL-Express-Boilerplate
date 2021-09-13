@@ -1,18 +1,18 @@
 var express = require('express');
 var router = express.Router();
-var models = require("../models"); //<--- Add models
-var authService = require("../services/auth"); //<--- Add authentication service
+var models = require('../models'); //<--- Add models
+var authService = require('../services/auth'); //<--- Add authentication service
 
 /* GET home page. */
 
-router.get("/", function(req, res, next) {
+router.get('/', function (req, res, next) {
   let token = req.cookies.jwt;
   if (authService.verifyUser(token)) {
-    authService.verifyUser(token).then(user => {
+    authService.verifyUser(token).then((user) => {
       if (user) {
-        res.render("loggedInIndex", { user: user });
+        res.render('loggedInIndex', { user: user });
       } else {
-        res.send("unauthorized");
+        res.send('unauthorized');
       }
     });
   } else {
@@ -20,14 +20,18 @@ router.get("/", function(req, res, next) {
   }
 });
 
-router.get("/test", function(req, res, next) {
+router.get('/sample', function (req, res, next) {
+  res.render('index', { title: process.env.SAMPLE_DATA });
+});
+
+router.get('/test', function (req, res, next) {
   let token = req.cookies.jwt;
   if (token) {
-    authService.verifyUser(token).then(user => {
+    authService.verifyUser(token).then((user) => {
       if (user) {
-        res.render("loggedInIndex", { user: user });
+        res.render('loggedInIndex', { user: user });
       } else {
-        res.send("unauthorized");
+        res.send('unauthorized');
       }
     });
   } else {
@@ -35,13 +39,12 @@ router.get("/test", function(req, res, next) {
   }
 });
 
-router.get('/error', function(req, res, next) {
+router.get('/error', function (req, res, next) {
   res.render('error', { title: 'Error' });
 });
 
-router.get('/cannotAccess', function(req, res, next) {
+router.get('/cannotAccess', function (req, res, next) {
   res.render('mustLogin', { title: 'Login Please' });
 });
-
 
 module.exports = router;
